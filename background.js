@@ -34,7 +34,21 @@ function getBookFromGoodreads() {
     return book;
 }
 
-function getObsidianUri(book) {
+async function getStorageValue(key) {
+    return new Promise((resolve, reject) => {
+        try {
+            chrome.storage.sync.get(key, function (value) {
+                resolve(value);
+            })
+        }
+        catch (ex) {
+            reject(ex);
+        }
+    });
+}
+
+async function getObsidianUri(book) {
+    const {vault,} = await getStorageValue({vault: 'notes',});
     let formatted_authors = book.authors.map(function(author) {
         return `[[${author}]]`;
     }).join(", ");
@@ -56,22 +70,23 @@ function getObsidianUri(book) {
     `);
     content = content.replaceAll('\n', '%0A');
     content = content.replaceAll('#', '%23');
-    let obsidian_uri = `obsidian://new?vault=notes&name=${book.short_title}&content=${content}`;
+    let obsidian_uri = `obsidian://new?vault=${vault}&name=${book.short_title}&content=${content}`;
     console.log(obsidian_uri);
     return obsidian_uri;
 }
 
-function handleBrowserButtonClick(tab) {
-    chrome.scripting.executeScript(
+async function handleBrowserButtonClick(tab) {
+    results = await chrome.scripting.executeScript(
         {
             target: {tabId: tab.id},
             func: getBookFromGoodreads,
-        },
-        (results) => {
-            const book = results[0].result;
-            const uri = getObsidianUri(book);
-            chrome.tabs.create({url: uri});
         });
+
+    console.log(results)
+
+    const book = results[0].result;
+    const uri = await getObsidianUri(book);
+    chrome.tabs.create({url: uri});
 }
 
 chrome.action.onClicked.addListener(handleBrowserButtonClick);
