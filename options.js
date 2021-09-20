@@ -1,11 +1,12 @@
 // Saves options to chrome.storage
 function save_options() {
-    var vault = document.getElementById('vault').value;
+    let vault = document.getElementById('vault').value;
+    let note_title = document.getElementById('note_title').value;
     chrome.storage.sync.set({
-      vault,
+      vault, note_title,
     }, function() {
       // Update status to let user know options were saved.
-      var status = document.getElementById('status');
+      let status = document.getElementById('status');
       status.textContent = 'Options saved.';
       setTimeout(function() {
         status.textContent = '';
@@ -16,8 +17,10 @@ function save_options() {
   function restore_options() {
     chrome.storage.sync.get({
       vault: 'notes',
+      note_title: '{{ book.short_title }} (book)'
     }, function(items) {
       document.getElementById('vault').value = items.vault;
+        document.getElementById('note_title').value = items.note_title;
     });
   }
   document.addEventListener('DOMContentLoaded', restore_options);

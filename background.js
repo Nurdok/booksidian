@@ -15,6 +15,17 @@ function dedent(text) {
     return text;
 }
 
+
+function populateTemplate(template, book) {
+    return template.replaceAll(/\{\{\s*(\w+)\s*\}\}/g, function(match, property, offset, string) {
+        if (book.hasOwnProperty(property)) {
+            return book[property];
+        } else {
+            return property;
+        }
+    });
+}
+
 function getBookFromGoodreads() {
     let book = new Object();
     book.full_title = document.getElementById("bookTitle").innerText.trim();
@@ -25,11 +36,14 @@ function getBookFromGoodreads() {
     document.querySelectorAll(".authorName span").forEach(function(elm) {
         book.authors.push(elm.innerText);
     });
+    book.formatted_authors = book.authors.map(function(author) {
+        return `[[${author}]]`;
+    }).join(", ");
     document.querySelectorAll("#details .row").forEach(function(node) {
-    if (node.innerText.includes("Published")) {
-        book.publication_year = node.innerText.match(/\d{4}/)[0];
-    }
-});
+        if (node.innerText.includes("Published")) {
+            book.publication_year = node.innerText.match(/\d{4}/)[0];
+        }
+    });
 
     return book;
 }
@@ -48,29 +62,28 @@ async function getStorageValue(key) {
 }
 
 async function getObsidianUri(book) {
-    const {vault,} = await getStorageValue({vault: 'notes',});
-    let formatted_authors = book.authors.map(function(author) {
-        return `[[${author}]]`;
-    }).join(", ");
-
+    const {vault, } = await getStorageValue({vault: 'notes'});
+    const {note_title, } = await getStorageValue({note_title: 'notes'});
+    let title = populateTemplate(note_title, book);
     let content = dedent(`
         ---
         tags:
         - book
         
         ---
-        # ${book.short_title}
+        # {{ short_title }}
         
         | | |
         | - | - |
-        | **Full title** | ${book.full_title} |
-        | **Authors** | ${formatted_authors} |
-        | **Publication Year** | ${book.publication_year} |
+        | **Full title** | {{ full_title }} |
+        | **Authors** | {{ formatted_authors }} |
+        | **Publication Year** | {{ publication_year }} |
         | | |
     `);
+    content = populateTemplate(content, book);
     content = content.replaceAll('\n', '%0A');
     content = content.replaceAll('#', '%23');
-    let obsidian_uri = `obsidian://new?vault=${vault}&name=${book.short_title}&content=${content}`;
+    let obsidian_uri = `obsidian://new?vault=${vault}&name=${title}&content=${content}`;
     console.log(obsidian_uri);
     return obsidian_uri;
 }
