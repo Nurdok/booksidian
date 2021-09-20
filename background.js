@@ -1,21 +1,6 @@
 //const nl = "%0A";  // #
 //const hash = "%23";  // \n
 
-function dedent(text) {
-    let re_whitespace = /^([ \t]*)(.*)\n/gm;
-    let l, m, i;
-    while ((m = re_whitespace.exec(text)) !== null) {
-        if (!m[2]) continue;
-        if (l = m[1].length) {
-            i = (i !== undefined) ? Math.min(i, l) : l;
-        } else break;
-    }
-    if (i)
-        text = text.replace(new RegExp('^[ \t]{' + i + '}(.*\n)', 'gm'), '$1');
-    return text;
-}
-
-
 function populateTemplate(template, book) {
     return template.replaceAll(/\{\{\s*(\w+)\s*\}\}/g, function(match, property, offset, string) {
         if (book.hasOwnProperty(property)) {
@@ -64,23 +49,9 @@ async function getStorageValue(key) {
 async function getObsidianUri(book) {
     const {vault, } = await getStorageValue({vault: 'notes'});
     const {note_title, } = await getStorageValue({note_title: 'notes'});
+    const {note_content, } = await getStorageValue({note_content: 'notes'});
     let title = populateTemplate(note_title, book);
-    let content = dedent(`
-        ---
-        tags:
-        - book
-        
-        ---
-        # {{ short_title }}
-        
-        | | |
-        | - | - |
-        | **Full title** | {{ full_title }} |
-        | **Authors** | {{ formatted_authors }} |
-        | **Publication Year** | {{ publication_year }} |
-        | | |
-    `);
-    content = populateTemplate(content, book);
+    let content = populateTemplate(note_content, book);
     content = content.replaceAll('\n', '%0A');
     content = content.replaceAll('#', '%23');
     let obsidian_uri = `obsidian://new?vault=${vault}&name=${title}&content=${content}`;
