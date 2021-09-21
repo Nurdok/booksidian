@@ -15,27 +15,29 @@
 <div class="container">
     <h1>Booksidian Options</h1>
     <div class="row">
-        <div class="col-6 mb-3">
-            <label for="vault" class="form-label">Vault</label>
+        <div class="form-floating col-6 mb-3 mt-3 ml-auto gx-1">
             <input type="text" class="form-control" id="vault">
+            <label for="vault">Vault (this is where your new notes will go)</label>
         </div>
     </div>
     <div class="row">
-        <label for="note_title" class="form-label">Note title template</label>
-        <div class="col-6 mb-3">
+        <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
             <input type="text" class="form-control" id="note_title">
+            <label for="note_title" class="form-label">Note title template (you can use book parameters here!)</label>
         </div>
-        <div class="col-6 mb-3">
+        <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
             <input type="text" class="form-control" id="note_title_preview" placeholder="preview" disabled>
+            <label for="note_title_preview" class="form-label">Note title preview</label>
         </div>
     </div>
     <div class="row">
-        <label for="note_content" class="form-label">Note content template</label>
-        <div class="col-6 mb-3">
-            <textarea class="form-control" id="note_content" rows="15"></textarea>
+        <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
+            <textarea class="form-control" id="note_content" style="height: 300px"></textarea>
+            <label for="note_content" class="form-label">Note content template (you can use book parameters here!)</label>
         </div>
-        <div class="col-6 mb-3">
-            <textarea class="form-control" id="note_content_preview" rows="15" placeholder="preview" disabled></textarea>
+        <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
+            <textarea class="form-control" id="note_content_preview" style="height: 300px" placeholder="preview" disabled></textarea>
+            <label for="note_content_preview" class="form-label">Note content preview</label>
         </div>
     </div>
     <div class="row">
@@ -50,9 +52,6 @@
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
 </div>
 
 <script src="options.js"></script>

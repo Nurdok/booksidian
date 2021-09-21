@@ -83,9 +83,14 @@ function restore_options() {
         document.getElementById('vault').value = items.vault;
         document.getElementById('note_title').value = items.note_title;
         document.getElementById('note_content').value = items.note_content;
+
+
+        // Trigger the previews for restored options (since changing the values
+        // in code doesn't seem to trigger the event listeners).
+        onNoteTitleInputChange();
+        onNoteContentInputChange();
     });
 }
-document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('save').addEventListener('click',
     save_options);
 
@@ -95,4 +100,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     let note_content_elm = document.getElementById('note_content');
     note_content_elm.addEventListener('input', onNoteContentInputChange);
+
+    restore_options();
 });
+
+
