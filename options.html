@@ -1,21 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>
-        Options
-    </title>
+    <title>Booksidian: Options</title>
+    <!--
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
 
-Desired vault:
-<input type="text" id="vault"></input>
-<br/>
-Note title:
-<input type="text" id="note_title"></input>
-<br/>
-<textarea id="note_content"></textarea>
-<div id="status"></div>
-<button id="save">Save</button>
+<div class="container">
+    <h1>Booksidian Options</h1>
+    <div class="row">
+        <div class="col-6 mb-3">
+            <label for="vault" class="form-label">Vault</label>
+            <input type="text" class="form-control" id="vault">
+        </div>
+    </div>
+    <div class="row">
+        <label for="note_title" class="form-label">Note title template</label>
+        <div class="col-6 mb-3">
+            <input type="text" class="form-control" id="note_title">
+        </div>
+        <div class="col-6 mb-3">
+            <input type="text" class="form-control" id="note_title_preview" placeholder="preview" disabled>
+        </div>
+    </div>
+    <div class="row">
+        <label for="note_content" class="form-label">Example textarea</label>
+        <div class="col-6 mb-3">
+            <textarea class="form-control" id="note_content" rows="15"></textarea>
+        </div>
+        <div class="col-6 mb-3">
+            <textarea class="form-control" id="note_content_preview" rows="15" placeholder="preview" disabled></textarea>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6 mb-3">
+            <div class="row justify-content-md-left">
+                <div class="col-md-auto">
+                    <button class="btn btn-primary" id="save">Save</button>
+                </div>
+                <div class="col-md-auto">
+                    <div id="status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
 
 <script src="options.js"></script>
 </body>

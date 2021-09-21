@@ -12,6 +12,38 @@ function dedent(text) {
     return text;
 }
 
+// Copied from background.js. Should be in a separate module once we figure
+// out how to load modules in background.js...
+function populateTemplate(template, book) {
+    return template.replaceAll(/\{\{\s*(\w+)\s*\}\}/g, function(match, property, offset, string) {
+        if (book.hasOwnProperty(property)) {
+            return book[property];
+        } else {
+            return property;
+        }
+    });
+}
+
+function getFakeBook() {
+    let book = new Object();
+    book.short_title = "Good Omens";
+    book.full_title = "Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch\n";
+    book.formatted_authors = "[[Terry Pratchett]], [[Neil Gaiman]]";
+    return book;
+}
+
+function onNoteTitleInputChange() {
+    let note_title = document.getElementById('note_title').value;
+    let preview = document.getElementById('note_title_preview');
+    preview.value = populateTemplate(note_title, getFakeBook());
+}
+
+function onNoteContentInputChange() {
+    let note_content = document.getElementById('note_content').value;
+    let preview = document.getElementById('note_content_preview');
+    preview.value = populateTemplate(note_content, getFakeBook());
+}
+
 // Saves options to chrome.storage
 function save_options() {
     let vault = document.getElementById('vault').value;
@@ -33,11 +65,10 @@ function restore_options() {
     chrome.storage.sync.get({
         vault: 'notes',
         note_title: '{{ book.short_title }} (book)',
-        note_content: dedent(`
+        note_content: dedent(`\
             ---
             tags:
             - book
-            
             ---
             # {{ short_title }}
             
@@ -57,3 +88,11 @@ function restore_options() {
 document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('save').addEventListener('click',
     save_options);
+
+document.addEventListener("DOMContentLoaded", function(event) {
+    let note_title_elm = document.getElementById('note_title');
+    note_title_elm.addEventListener('input', onNoteTitleInputChange);
+
+    let note_content_elm = document.getElementById('note_content');
+    note_content_elm.addEventListener('input', onNoteContentInputChange);
+});
