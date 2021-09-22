@@ -119,6 +119,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     note_content_elm.addEventListener('input', onNoteContentInputChange);
 
     restoreOptionsFromStorage();
+
+    document.querySelectorAll(".booksidian_template").forEach(function(elm) {
+        elm.innerHTML = `<code>${populateTemplate(elm.textContent, getFakeBook())}</code>`;
+
+    })
 });
 
 
