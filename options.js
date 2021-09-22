@@ -48,7 +48,7 @@ function onNoteContentInputChange() {
 }
 
 // Saves options to chrome.storage
-function save_options() {
+function saveOptionsToStorage() {
     let vault = document.getElementById('vault').value;
     let file_location = document.getElementById('file_location').value;
     let note_title = document.getElementById('note_title').value;
@@ -65,8 +65,8 @@ function save_options() {
     });
 }
 
-function restore_options() {
-    chrome.storage.sync.get({
+function getDefaultOptions() {
+    return {
         vault: 'notes',
         file_location: '',
         note_title: '{{ book.short_title }} (book)',
@@ -84,30 +84,41 @@ function restore_options() {
             | **Publication Year** | {{ publication_year }} |
             | | |
         `),
-    }, function(items) {
-        document.getElementById('vault').value = items.vault;
-        document.getElementById('file_location').value = items.file_location;
-        document.getElementById('note_title').value = items.note_title;
-        document.getElementById('note_content').value = items.note_content;
-
-
-        // Trigger the previews for restored options (since changing the values
-        // in code doesn't seem to trigger the event listeners).
-        onNoteTitleInputChange();
-        onNoteContentInputChange();
-    });
+    }
 }
-document.getElementById('save').addEventListener('click',
-    save_options);
+
+function setFormValues(items) {
+    document.getElementById('vault').value = items.vault;
+    document.getElementById('file_location').value = items.file_location;
+    document.getElementById('note_title').value = items.note_title;
+    document.getElementById('note_content').value = items.note_content;
+
+
+    // Trigger the previews, since changing the values in code doesn't seem to
+    // trigger the event listeners).
+    onNoteTitleInputChange();
+    onNoteContentInputChange();
+}
+
+function restoreOptionsFromDefaults() {
+   setFormValues(getDefaultOptions());
+}
+
+function restoreOptionsFromStorage() {
+    chrome.storage.sync.get(getDefaultOptions(), setFormValues);
+}
 
 document.addEventListener("DOMContentLoaded", function(event) {
+    document.getElementById('save').addEventListener('click', saveOptionsToStorage);
+    document.getElementById('restore_defaults').addEventListener('click', restoreOptionsFromDefaults);
+
     let note_title_elm = document.getElementById('note_title');
     note_title_elm.addEventListener('input', onNoteTitleInputChange);
 
     let note_content_elm = document.getElementById('note_content');
     note_content_elm.addEventListener('input', onNoteContentInputChange);
 
-    restore_options();
+    restoreOptionsFromStorage();
 });
 
 
