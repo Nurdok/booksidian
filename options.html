@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>Booksidian: Options</title>
-    <!--
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    -->
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
 
-<div class="container">
+<div class="container mb-3">
     <div class="row mt-3">
         <h1><img src="booksidian.png"/> Booksidian Options</h1>
+    </div>
+    <div class="row mt-3">
+        <h3>File Options</h3>
     </div>
     <div class="row">
         <div class="form-floating col-6 mb-3 mt-3 ml-auto gx-1">
@@ -26,6 +28,73 @@
         <div class="form-floating col-6 mb-3 mt-3 ml-auto gx-1">
             <input type="text" class="form-control" id="file_location">
             <label for="file_location">New note location (leave empty for top-level note)</label>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <h3>Template Options</h3>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <p>
+                You can use book information in the note title and content templates - parameter names
+                are surrounded with double curly braces - for example, <code>{{ short title }}</code>. The preview pane
+                will show you how your template will render with an example book.
+            </p>
+        </div>
+        <div class="col-6">
+            <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#param_table" aria-expanded="false" aria-controls="param_table">
+                Show available parameters
+            </button>
+        </div>
+
+        <div class="collapse mt-3" id="param_table">
+            <div class="card card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <table class="table table-sm table-striped">
+                            <thead>
+                            <tr>
+                                <th scope="col">Parameter Name</th>
+                                <th scope="col">Description</th>
+                                <th scope="col">Example Output</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><code>full_title</code></td>
+                                <td>The full title of the book. Note that this may include colons, which aren't legal note name in Obsidian (use <code>short_title</code> instead)</td>
+                                <td class="booksidian_template">{{ full_title }}</td>
+                            </tr>
+                            <tr>
+                                <td><code>short_title</code></td>
+                                <td>the title of the book up to the first colon</th>
+                                <td class="booksidian_template">{{ short_title }}</td>
+                            </tr>
+                            <tr>
+                                <td><code>publication_year</code></th>
+                                <td>the publication year of the book's first edition</th>
+                                <td class="booksidian_template">{{ publication_year }}</td>
+                            </tr>
+                            <tr>
+                                <td><code>formatted_authors</code></th>
+                                <td>a comma separated list of authors, surrounded with Obsidian link notation</td>
+                                <td class="booksidian_template">{{ formatted_authors }}</td>
+                            </tr>
+                            <tr>
+                                <td><code>cover_image_url</code></th>
+                                <td>a URL for the main Goodreads cover image</td>
+                                <td class="booksidian_template">{{ cover_image_url }}</td>
+                            </tr>
+                            <tr>
+                                <td><code>cover_image</code></th>
+                                <td>same as the above URL, but embedded as a Markdown image</td>
+                                <td class="booksidian_template">{{ cover_image }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -48,7 +117,7 @@
             <label for="note_content_preview" class="form-label">Note content preview</label>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-6 mb-3">
             <div class="row justify-content-md-left">
                 <div class="col-md-auto">
@@ -65,6 +134,7 @@
     </div>
 </div>
 
+
 <footer class="text-lg-start bg-light text-muted fixed-bottom">
     <div class="container text-center">
         <div><a href="https://github.com/Nurdok/booksidian">Homepage</a> | <a href="https://github.com/Nurdok/booksidian/issues/new">Report Issue</a></div>
@@ -72,7 +142,12 @@
 </footer>
 
 
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="third_party/jquery-3.6.0.min.js"></script>
+<script src="third_party/popper.min.js"></script>
+<script src="third_party/bootstrap.min.js"></script>
 
 <script src="options.js"></script>
+
 </body>
 </html>
