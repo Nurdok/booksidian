@@ -47,10 +47,11 @@ function onNoteContentInputChange() {
 // Saves options to chrome.storage
 function save_options() {
     let vault = document.getElementById('vault').value;
+    let file_location = document.getElementById('file_location').value;
     let note_title = document.getElementById('note_title').value;
     let note_content = document.getElementById('note_content').value;
     chrome.storage.sync.set({
-        vault, note_title, note_content,
+        vault, file_location, note_title, note_content,
     }, function() {
         // Update status to let user know options were saved.
         let status = document.getElementById('status');
@@ -64,6 +65,7 @@ function save_options() {
 function restore_options() {
     chrome.storage.sync.get({
         vault: 'notes',
+        file_location: '',
         note_title: '{{ book.short_title }} (book)',
         note_content: dedent(`\
             ---
@@ -81,6 +83,7 @@ function restore_options() {
         `),
     }, function(items) {
         document.getElementById('vault').value = items.vault;
+        document.getElementById('file_location').value = items.file_location;
         document.getElementById('note_title').value = items.note_title;
         document.getElementById('note_content').value = items.note_content;
 

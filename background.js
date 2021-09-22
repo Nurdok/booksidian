@@ -48,13 +48,17 @@ async function getStorageValue(key) {
 
 async function getObsidianUri(book) {
     const {vault, } = await getStorageValue({vault: 'notes'});
+    let {file_location, } = await getStorageValue({file_location: 'notes'});
     const {note_title, } = await getStorageValue({note_title: 'notes'});
     const {note_content, } = await getStorageValue({note_content: 'notes'});
     let title = populateTemplate(note_title, book);
     let content = populateTemplate(note_content, book);
     content = content.replaceAll('\n', '%0A');
     content = content.replaceAll('#', '%23');
-    let obsidian_uri = `obsidian://new?vault=${vault}&name=${title}&content=${content}`;
+    if (!file_location.endsWith('/')) {
+        file_location += '/';
+    }
+    let obsidian_uri = `obsidian://new?vault=${vault}&file=${file_location}${title}&content=${content}`;
     console.log(obsidian_uri);
     return obsidian_uri;
 }
