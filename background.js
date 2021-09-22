@@ -29,7 +29,8 @@ function getBookFromGoodreads() {
             book.publication_year = node.innerText.match(/\d{4}/)[0];
         }
     });
-
+    book.cover_image_url = document.getElementById("coverImage").getAttribute("src");
+    book.cover_image = `![](${book.cover_image_url})`;
     return book;
 }
 
@@ -53,12 +54,13 @@ async function getObsidianUri(book) {
     const {note_content, } = await getStorageValue({note_content: 'notes'});
     let title = populateTemplate(note_title, book);
     let content = populateTemplate(note_content, book);
-    content = content.replaceAll('\n', '%0A');
-    content = content.replaceAll('#', '%23');
+    //content = content.replaceAll('\n', '%0A');
+    //content = content.replaceAll('#', '%23');
     if (!file_location.endsWith('/')) {
         file_location += '/';
     }
-    let obsidian_uri = `obsidian://new?vault=${vault}&file=${file_location}${title}&content=${content}`;
+    let e = encodeURIComponent;  // For convenience.
+    let obsidian_uri = `obsidian://new?vault=${e(vault)}&file=${e(file_location)}${e(title)}&content=${e(content)}`;
     console.log(obsidian_uri);
     return obsidian_uri;
 }

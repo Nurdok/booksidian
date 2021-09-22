@@ -29,6 +29,9 @@ function getFakeBook() {
     book.short_title = "Good Omens";
     book.full_title = "Good Omens: The Nice and Accurate Prophecies of Agnes Nutter, Witch\n";
     book.formatted_authors = "[[Terry Pratchett]], [[Neil Gaiman]]";
+    book.publication_year = "2006";
+    book.cover_image_url = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1615552073l/12067.jpg";
+    book.cover_image = `![](${book.cover_image_url})`;
     return book;
 }
 
