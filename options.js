@@ -69,7 +69,7 @@ function getDefaultOptions() {
     return {
         vault: 'notes',
         file_location: '',
-        note_title: '{{ book.short_title }} (book)',
+        note_title: '{{ short_title }} (book)',
         note_content: dedent(`\
             ---
             tags:
