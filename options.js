@@ -122,8 +122,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     document.querySelectorAll(".booksidian_template").forEach(function(elm) {
         elm.innerHTML = `<code>${populateTemplate(elm.textContent, getFakeBook())}</code>`;
-
     })
+
+    const note_content_preview_elm = document.getElementById("note_content_preview");
+
+    const resizeObserver = new ResizeObserver(() => {
+        note_content_preview_elm.style.height = note_content_elm.offsetHeight + "px";
+        note_content_preview_elm.style.width = note_content_elm.offsetWidth + "px";
+    });
+    resizeObserver.observe(note_content_elm);
+
 });
 
 
