@@ -1,5 +1,5 @@
 {
-  "name": "Booksidian",
+  "name": "\uD83D\uDCDA Booksidian",
   "description": "Create an Obsidian note for a book",
   "version": "1.0",
   "manifest_version": 3,
@@ -8,5 +8,6 @@
   },
   "permissions": ["activeTab", "scripting", "storage"],
   "action": {},
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "icons": {"128":  "booksidian.png"}
 }

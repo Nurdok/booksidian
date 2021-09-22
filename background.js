@@ -54,8 +54,6 @@ async function getObsidianUri(book) {
     const {note_content, } = await getStorageValue({note_content: 'notes'});
     let title = populateTemplate(note_title, book);
     let content = populateTemplate(note_content, book);
-    //content = content.replaceAll('\n', '%0A');
-    //content = content.replaceAll('#', '%23');
     if (!file_location.endsWith('/')) {
         file_location += '/';
     }
