@@ -16,6 +16,9 @@
     <div class="row mt-3">
         <h1><img src="booksidian.png"/> Booksidian Options</h1>
     </div>
+    <div class="row mt-3">
+        <h5>File Options</h5>
+    </div>
     <div class="row">
         <div class="form-floating col-6 mb-3 mt-3 ml-auto gx-1">
             <input type="text" class="form-control" id="vault">
@@ -27,6 +30,27 @@
             <input type="text" class="form-control" id="file_location">
             <label for="file_location">New note location (leave empty for top-level note)</label>
         </div>
+    </div>
+    <div class="row mt-3">
+        <h5>Template Options</h5>
+    </div>
+    <div class="row">
+        <!--
+        <div class="collapse" id="template_docs">
+            <div class="card card-body">
+            -->
+                You can use book information in the note title and content templates. You can use a parameter name
+                surrounded with double curly braces - for example, <code>{{ short title }}</code>. The preview pane
+                will show you how your template will render with an example book.
+
+                Available parameters:
+                - <code>full_title</code>: the full title of the book. Note that this may include colons, which aren't legal note name in Obsidian (use <code>short_title`</code> instead)
+                - <code>short_title</code>: the title of the book up to the first colon
+                - <code>publication_year</code>: the publication year of the book's first edition
+        <!--
+            </div>
+        </div>
+        -->
     </div>
     <div class="row">
         <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
