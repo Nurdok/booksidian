@@ -32,6 +32,8 @@ function getFakeBook() {
     book.publication_year = "2006";
     book.cover_image_url = "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1615552073l/12067.jpg";
     book.cover_image = `![](${book.cover_image_url})`;
+    book.abstract = "‘Armageddon only happens once, you know. They don’t let you go around again until you get it right.’\nPeople have been predicting the end of the world almost from its very beginning, so it’s only natural to be sceptical when a new date is set for Judgement Day. But what if, for once, the predictions are right, and the apocalypse really is due to arrive next Saturday, just af ...more\n"
+    book.series = "Prophecies #3"
     return book;
 }
 
