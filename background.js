@@ -1,5 +1,3 @@
-//const nl = "%0A";  // #
-//const hash = "%23";  // \n
 
 function populateTemplate(template, book) {
     return template.replaceAll(/\{\{\s*(\w+)\s*\}\}/g, function(match, property, offset, string) {
