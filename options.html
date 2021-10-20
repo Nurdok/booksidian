@@ -90,6 +90,25 @@
                                 <td>same as the above URL, but embedded as a Markdown image</td>
                                 <td class="booksidian_template">{{ cover_image }}</td>
                             </tr>
+                            <tr>
+                                <td><code>date</code></th>
+                                <td>
+                                    Displays the current date and time according to the specified format. Defaults to
+                                    <code>YYYY-MM-DD</code> if no format is specified. Specify a format with a colon
+                                    after the variable name.
+                                </td>
+                                <td>
+                                        <code>{{ date }}</code> → <span class="booksidian_template">{{ date }}</span><br/>
+                                        <code>{{ date:YYYY-MM }}</code> → <span class="booksidian_template">{{ date:YYYY-MM }}</span><br/>
+                                        <code>{{ date:dddd MMM do, Y }}</code> → <span class="booksidian_template">{{ date:dddd MMM do, Y }}</span><br/>
+                                        <code>{{ date:HH:mm }}</code> → <span class="booksidian_template">{{ date:HH:mm }}</span><br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><code>time</code></th>
+                                <td>same as <code>date</code>, but defaults to <code>HH:mm</code></td>
+                                <td class="booksidian_template">{{ time }}</td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
