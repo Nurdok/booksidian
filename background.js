@@ -1,15 +1,4 @@
-//const nl = "%0A";  // #
-//const hash = "%23";  // \n
-
-function populateTemplate(template, book) {
-    return template.replaceAll(/\{\{\s*(\w+)\s*\}\}/g, function(match, property, offset, string) {
-        if (book.hasOwnProperty(property)) {
-            return book[property];
-        } else {
-            return property;
-        }
-    });
-}
+import {populateTemplate} from "./template.js";
 
 function getBookFromGoodreads() {
     let book = new Object();
@@ -66,7 +55,7 @@ async function getObsidianUri(book) {
 }
 
 async function handleBrowserButtonClick(tab) {
-    results = await chrome.scripting.executeScript(
+    const results = await chrome.scripting.executeScript(
         {
             target: {tabId: tab.id},
             func: getBookFromGoodreads,
