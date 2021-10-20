@@ -40,6 +40,8 @@ function getBookFromGoodreads() {
     });
     book.cover_image_url = document.getElementById("coverImage").getAttribute("src");
     book.cover_image = `![](${book.cover_image_url})`;
+    book.abstract = document.getElementById("description").innerText;
+    book.series = document.getElementById("bookSeries").innerText;
     return book;
 }
 
