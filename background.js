@@ -1,24 +1,15 @@
+//const nl = "%0A";  // #
+//const hash = "%23";  // \n
+
 function populateTemplate(template, book) {
-    return template.replaceAll(/\{\{\s*(\w+):?([^}{\n]+)\s*\}\}/g, function(match, property, format, offset, string) {
-        format = format.trim();
+    return template.replaceAll(/\{\{\s*(\w+)\s*\}\}/g, function(match, property, offset, string) {
         if (book.hasOwnProperty(property)) {
             return book[property];
-        } else if (property === "date") {
-            if (!format) {
-                format = "YYYY-MM-DD";
-            }
-            return moment().format(format);
-        } else if (property === "time") {
-            if (!format) {
-                format = "HH:mm";
-            }
-            return moment().format(format);
         } else {
             return property;
         }
     });
 }
-
 
 function getBookFromGoodreads() {
     let book = new Object();

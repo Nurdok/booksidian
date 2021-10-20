@@ -71,54 +71,35 @@
                                 <td class="booksidian_template">{{ short_title }}</td>
                             </tr>
                             <tr>
-                                <td><code>publication_year</code></td>
+                                <td><code>publication_year</code></th>
                                 <td>the publication year of the book's first edition</th>
                                 <td class="booksidian_template">{{ publication_year }}</td>
                             </tr>
                             <tr>
-                                <td><code>formatted_authors</code></td>
+                                <td><code>formatted_authors</code></th>
                                 <td>a comma separated list of authors, surrounded with Obsidian link notation</td>
                                 <td class="booksidian_template">{{ formatted_authors }}</td>
                             </tr>
                             <tr>
-                                <td><code>cover_image_url</code></td>
+                                <td><code>cover_image_url</code></th>
                                 <td>a URL for the main Goodreads cover image</td>
                                 <td class="booksidian_template">{{ cover_image_url }}</td>
                             </tr>
                             <tr>
-                                <td><code>cover_image</code></td>
+                                <td><code>cover_image</code></th>
                                 <td>same as the above URL, but embedded as a Markdown image</td>
                                 <td class="booksidian_template">{{ cover_image }}</td>
                             </tr>
                             <tr>
-                                <td><code>abstract</code></td>
+                                <td><code>abstract</code></th>
                                 <td>the book's description from the page</td>
                                 <td class="booksidian_template">{{ abstract }}</td>
                             </tr>
                             <tr>
-                                <td><code>series</code></td>
+                                <td><code>series</code></th>
                                 <td>the book's series data</td>
                                 <td class="booksidian_template">{{ series }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>date</code></td>
-                                <td>
-                                    Displays the current date and time according to the specified format. Defaults to
-                                    <code>YYYY-MM-DD</code> if no format is specified. Specify a format with a colon
-                                    after the variable name.
-                                </td>
-                                <td>
-                                        <code>{{ date }}</code> → <span class="booksidian_template">{{ date }}</span><br/>
-                                        <code>{{ date:YYYY-MM }}</code> → <span class="booksidian_template">{{ date:YYYY-MM }}</span><br/>
-                                        <code>{{ date:dddd MMM do, Y }}</code> → <span class="booksidian_template">{{ date:dddd MMM do, Y }}</span><br/>
-                                        <code>{{ date:HH:mm }}</code> → <span class="booksidian_template">{{ date:HH:mm }}</span><br/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><code>time</code></td>
-                                <td>same as <code>date</code>, but defaults to <code>HH:mm</code></td>
-                                <td class="booksidian_template">{{ time }}</td>
-                            </tr>
+                            </tr>  
                             </tbody>
                         </table>
                     </div>
@@ -175,7 +156,6 @@
 <script src="third_party/jquery-3.6.0.min.js"></script>
 <script src="third_party/popper.min.js"></script>
 <script src="third_party/bootstrap.min.js"></script>
-<script src="third_party/moment.js"></script>
 
 <script src="options.js"></script>
 
