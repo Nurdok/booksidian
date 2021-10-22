@@ -1,3 +1,5 @@
+import {populateTemplate} from "./template.js";
+
 function dedent(text) {
     let re_whitespace = /^([ \t]*)(.*)\n/gm;
     let l, m, i;
@@ -10,18 +12,6 @@ function dedent(text) {
     if (i)
         text = text.replace(new RegExp('^[ \t]{' + i + '}(.*\n)', 'gm'), '$1');
     return text;
-}
-
-// Copied from background.js. Should be in a separate module once we figure
-// out how to load modules in background.js...
-function populateTemplate(template, book) {
-    return template.replaceAll(/\{\{\s*(\w+)\s*\}\}/g, function(match, property, offset, string) {
-        if (book.hasOwnProperty(property)) {
-            return book[property];
-        } else {
-            return property;
-        }
-    });
 }
 
 function getFakeBook() {
