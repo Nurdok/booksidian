@@ -1,5 +1,6 @@
 import {populateTemplate} from "./template.js";
-import {DEFAULT_OPTIONS} from "./consts.js";
+import {GOODREADS_URL, DEFAULT_OPTIONS} from "./consts.js";
+
 
 function getBookFromGoodreads() {
     let book = new Object();
@@ -56,6 +57,11 @@ async function getObsidianUri(book) {
 }
 
 async function handleBrowserButtonClick(tab) {
+    // Verify we are in Goodreads site
+    if (!tab.url.includes(GOODREADS_URL)) {
+        console.log(tab.url);
+        return;
+    }
     const results = await chrome.scripting.executeScript(
         {
             target: {tabId: tab.id},

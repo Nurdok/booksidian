@@ -7,7 +7,7 @@
     "service_worker": "background.js",
     "type": "module"
   },
-  "permissions": ["activeTab", "scripting", "storage"],
+  "permissions": ["activeTab", "scripting", "storage", "tabs"],
   "action": {},
   "options_page": "options.html",
   "icons": {"128":  "booksidian.png"}
