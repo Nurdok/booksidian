@@ -1,18 +1,6 @@
 import {populateTemplate} from "./template.js";
+import {DEFAULT_OPTIONS} from "./consts.js";
 
-function dedent(text) {
-    let re_whitespace = /^([ \t]*)(.*)\n/gm;
-    let l, m, i;
-    while ((m = re_whitespace.exec(text)) !== null) {
-        if (!m[2]) continue;
-        if (l = m[1].length) {
-            i = (i !== undefined) ? Math.min(i, l) : l;
-        } else break;
-    }
-    if (i)
-        text = text.replace(new RegExp('^[ \t]{' + i + '}(.*\n)', 'gm'), '$1');
-    return text;
-}
 
 function getFakeBook() {
     let book = new Object();
@@ -57,28 +45,6 @@ function saveOptionsToStorage() {
     });
 }
 
-function getDefaultOptions() {
-    return {
-        vault: 'notes',
-        file_location: '',
-        note_title: '{{ short_title }} (book)',
-        note_content: dedent(`\
-            ---
-            tags:
-            - book
-            ---
-            # {{ short_title }}
-            
-            | | |
-            | - | - |
-            | **Full title** | {{ full_title }} |
-            | **Authors** | {{ formatted_authors }} |
-            | **Publication Year** | {{ publication_year }} |
-            | | |
-        `),
-    }
-}
-
 function setFormValues(items) {
     document.getElementById('vault').value = items.vault;
     document.getElementById('file_location').value = items.file_location;
@@ -93,11 +59,11 @@ function setFormValues(items) {
 }
 
 function restoreOptionsFromDefaults() {
-   setFormValues(getDefaultOptions());
+   setFormValues(DEFAULT_OPTIONS);
 }
 
 function restoreOptionsFromStorage() {
-    chrome.storage.sync.get(getDefaultOptions(), setFormValues);
+    chrome.storage.sync.get(DEFAULT_OPTIONS, setFormValues);
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {

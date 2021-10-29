@@ -1,4 +1,5 @@
 import {populateTemplate} from "./template.js";
+import {DEFAULT_OPTIONS} from "./consts.js";
 
 function getBookFromGoodreads() {
     let book = new Object();
@@ -39,10 +40,10 @@ async function getStorageValue(key) {
 }
 
 async function getObsidianUri(book) {
-    const {vault, } = await getStorageValue({vault: 'notes'});
-    let {file_location, } = await getStorageValue({file_location: 'notes'});
-    const {note_title, } = await getStorageValue({note_title: 'notes'});
-    const {note_content, } = await getStorageValue({note_content: 'notes'});
+    const {vault, } = await getStorageValue({vault: DEFAULT_OPTIONS.vault});
+    let {file_location, } = await getStorageValue({file_location: DEFAULT_OPTIONS.file_location});
+    const {note_title, } = await getStorageValue({note_title: DEFAULT_OPTIONS.note_title});
+    const {note_content, } = await getStorageValue({note_content: DEFAULT_OPTIONS.note_content});
     let title = populateTemplate(note_title, book);
     let content = populateTemplate(note_content, book);
     if (!file_location.endsWith('/')) {
