@@ -12,6 +12,8 @@ function dedent(text) {
     return text;
 }
 
+export const GOODREADS_URL = 'www.goodreads.com';
+
 export const DEFAULT_OPTIONS = {
     vault: 'notes',
     file_location: '',
