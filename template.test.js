@@ -17,4 +17,10 @@ test('test date', () => {
     // TODO: Mock Datetime instead
     const now = DateTime.now().toFormat("yyyy-MM-dd"); 
     expect(populateTemplate("{{ date }}", {short_title: "Hello"})).toBe(now);
+});
+
+test('test time', () => {
+    // TODO: Mock Datetime instead
+    const now = DateTime.now().toFormat("HH:mm"); 
+    expect(populateTemplate("{{ time }}", {short_title: "Hello"})).toBe(now);
 }); 
