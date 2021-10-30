@@ -52,14 +52,12 @@ async function getObsidianUri(book) {
     }
     let e = encodeURIComponent;  // For convenience.
     let obsidian_uri = `obsidian://new?vault=${e(vault)}&file=${e(file_location)}${e(title)}&content=${e(content)}`;
-    console.log(obsidian_uri);
     return obsidian_uri;
 }
 
 async function handleBrowserButtonClick(tab) {
     // Verify we are in Goodreads site
     if (!tab.url.includes(GOODREADS_URL)) {
-        console.log(tab.url);
         return;
     }
     const results = await chrome.scripting.executeScript(
@@ -67,8 +65,6 @@ async function handleBrowserButtonClick(tab) {
             target: {tabId: tab.id},
             func: getBookFromGoodreads,
         });
-
-    console.log(results)
 
     const book = results[0].result;
     const uri = await getObsidianUri(book);
