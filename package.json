@@ -1,0 +1,24 @@
+{
+  "name": "booksidian",
+  "version": "1.0.0",
+  "description": "Chrome extension for Goodread Obsidian notes",
+  "main": "./background.js",
+  "scripts": {
+    "test": "jest --transformIgnorePatterns \"node_modules/(?!booksidian)/\" --env=jsdom"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nurdok/booksidian.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nurdok/booksidian/issues"
+  },
+  "homepage": "https://github.com/Nurdok/booksidian#readme",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^27.3.1"
+  }
+}
