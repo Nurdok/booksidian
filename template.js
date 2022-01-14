@@ -1,7 +1,7 @@
 import {DateTime} from "./third_party/luxon.min.js";
 
 export function populateTemplate(template, book) {
-    return template.replaceAll(/\{\{\s*(\w+):?([^}{\n]+)\s*\}\}/g, function(match, property, format, offset, string) {
+    return template.replace(/\{\{\s*(\w+):?([^}{\n]+)\s*\}\}/g, function(match, property, format, offset, string) {
         format = format.trim();
         if (book.hasOwnProperty(property)) {
             return book[property];
