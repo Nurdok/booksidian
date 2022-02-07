@@ -26,8 +26,15 @@ function getBookFromGoodreads() {
     book.series = document.getElementById("bookSeries").innerText;
     book.rating = document.querySelector('[itemprop=ratingValue]').textContent;
     book.rating_count=document.querySelector('[itemprop=ratingCount]').content
-    book.isbn13 = document.querySelector('[itemprop=isbn]').textContent
     book.total_pages= document.querySelector('[itemprop=numberOfPages]').textContent
+
+    // Catch required as some books (such as test case) do not have this value
+    try {
+        book.isbn13 = document.querySelector('[itemprop=isbn]').textContent;
+    } 
+    catch (error) {
+        book.isbn13 = null
+    }
     return book;
 }
 
