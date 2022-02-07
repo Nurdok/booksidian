@@ -30,6 +30,10 @@ export const DEFAULT_OPTIONS = {
         | **Full title** | {{ full_title }} |
         | **Authors** | {{ formatted_authors }} |
         | **Publication Year** | {{ publication_year }} |
+        | **Rating**| {{ rating }} |
+        | **No. of Ratings** | {{ rating_count }} |
+        | **No. of Pages** | {{ total_pages }} |
+        | **ISBN Number** | {{ isbn13 }} |
         | | |
     `),
 }
