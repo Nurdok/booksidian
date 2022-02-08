@@ -24,6 +24,17 @@ function getBookFromGoodreads() {
     book.cover_image = `![](${book.cover_image_url})`;
     book.abstract = document.getElementById("description").innerText;
     book.series = document.getElementById("bookSeries").innerText;
+    book.rating = document.querySelector('[itemprop=ratingValue]').textContent;
+    book.rating_count=document.querySelector('[itemprop=ratingCount]').content;
+    book.total_pages= document.querySelector('[itemprop=numberOfPages]').textContent;
+
+    // Catch required as some books (such as test case) do not have this value
+    try {
+        book.isbn13 = document.querySelector('[itemprop=isbn]').textContent;
+    } 
+    catch (error) {
+        book.isbn13 = null
+    }
     return book;
 }
 
