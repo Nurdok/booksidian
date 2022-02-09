@@ -30,3 +30,11 @@ test('test time', () => {
 test('test date formatting', () => {
     expect(populateTemplate("{{ date:ffff }}", {})).toBe("Monday, 15 May 2017, 08:30 Coordinated Universal Time")
 });
+
+test('test isbn13', () => {
+    expect(populateTemplate("{{ isbn13 }}", {isbn13: "0123456789012"})).toBe("0123456789012");
+});
+
+test('test missing isbn13', () => {
+    expect(populateTemplate("{{ isbn13 }}", {isbn13: null})).toBe("");
+});
