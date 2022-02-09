@@ -15,7 +15,7 @@ function getFakeBook() {
     book.rating = "4.24";
     book.rating_count = 620758;
     book.total_pages = "491 pages";
-    book.isbn13 = null;
+    book.isbn13 = "9780060853983";
     return book;
 }
 
