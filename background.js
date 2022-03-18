@@ -16,7 +16,7 @@ function getBookFromGoodreads() {
         return `[[${author}]]`;
     }).join(", ");
     document.querySelectorAll("#details .row").forEach(function(node) {
-        if (node.innerText.includes("Published")) {
+        if (node.innerText.includes("Published") || node.innerText.includes("Expected publication")) {
             book.publication_year = node.innerText.match(/\d{4}/)[0];
         }
     });
@@ -25,15 +25,20 @@ function getBookFromGoodreads() {
     book.abstract = document.getElementById("description").innerText;
     book.series = document.getElementById("bookSeries").innerText;
     book.rating = document.querySelector('[itemprop=ratingValue]').textContent;
-    book.rating_count=document.querySelector('[itemprop=ratingCount]').content;
-    book.total_pages= document.querySelector('[itemprop=numberOfPages]').textContent;
+    book.rating_count = document.querySelector('[itemprop=ratingCount]').content;
+    try {
+        book.total_pages = document.querySelector('[itemprop=numberOfPages]').textContent;
+    }
+    catch (error) {
+        book.total_pages = null;
+    }
 
     // Catch required as some books (such as test case) do not have this value
     try {
         book.isbn13 = document.querySelector('[itemprop=isbn]').textContent;
-    } 
+    }
     catch (error) {
-        book.isbn13 = null
+        book.isbn13 = null;
     }
     return book;
 }
