@@ -1,4 +1,4 @@
-import {DateTime} from "./third_party/luxon.min.js";
+import {DateTime} from "../third_party/luxon.min.js";
 
 export function populateTemplate(template, book) {
     return template.replace(/\{\{\s*(\w+):?([^}{\n]+)\s*\}\}/g, function(match, property, format, offset, string) {

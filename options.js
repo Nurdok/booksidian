@@ -1,5 +1,5 @@
-import {populateTemplate} from "./template.js";
-import {DEFAULT_OPTIONS} from "./consts.js";
+import {populateTemplate} from "./goodreads/template.js";
+import {DEFAULT_OPTIONS} from "./goodreads/consts.js";
 
 
 function getFakeBook() {
