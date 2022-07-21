@@ -33,6 +33,16 @@
     <div class="row mt-3">
         <h3>Template Options</h3>
     </div>
+    <ul class="nav nav-tabs" id="template-options-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="goodreads-tab" data-bs-toggle="tab" data-bs-target="#goodreads-options" type="button" role="tab" aria-controls="goodreads-options" aria-selected="true">Books (Goodreads)</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#youtube-options" type="button" role="tab" aria-controls="youtube-options" aria-selected="false">Videos (YouTube)</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="template-options-tab-content">
+        <div class="tab-pane fade show active" id="goodreads-options" role="tabpanel" aria-labelledby="goodreads-options">
     <div class="row">
         <div class="col-6">
             <p>
@@ -182,6 +192,9 @@
             </div>
         </div>
     </div>
+    </div>
+    <div class="tab-pane fade" id="youtube-options" role="tabpanel" aria-labelledby="youtube-options">youtube</div>
+</div>
 </div>
 
 
@@ -195,7 +208,7 @@
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="third_party/jquery-3.6.0.min.js"></script>
 <script src="third_party/popper.min.js"></script>
-<script src="third_party/bootstrap.min.js"></script>
+<script src="third_party/bootstrap.bundle.min.js"></script>
 
 <script type="module" src="options.js"></script>
 
