@@ -1,4 +1,4 @@
-import {populateTemplate} from "./template.js";
+import {populateTemplate} from "../template.js";
 import {DEFAULT_OPTIONS} from "./consts.js";
 import {getStorageValue} from "../utils.js";
 

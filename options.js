@@ -1,4 +1,4 @@
-import {populateTemplate} from "./goodreads/template.js";
+import {populateTemplate} from "./template.js";
 import {DEFAULT_OPTIONS} from "./goodreads/consts.js";
 
 
