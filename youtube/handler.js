@@ -5,7 +5,10 @@ import {DEFAULT_OPTIONS} from "./consts.js";
 function getVideoFromYoutube() {
     let video = new Object();
     let metadata = document.getElementsByClassName('watch-active-metadata')[0];
-    video.title = metadata.getElementsByClassName("title")[0].childNodes[0].innerText.trim();
+    video.full_title = metadata.getElementsByClassName("title")[0].childNodes[0].innerText.trim();
+    let [short_title, ...title_tag] = video.full_title.split(/[*"\/\\<>:|?]+/)
+    video.short_title = short_title
+    video.title_tag = title_tag.join(' ')
     video.channel = metadata.getElementsByClassName('ytd-channel-name')[0].
         getElementsByClassName('yt-formatted-string')[0].innerText.trim();
     return video;

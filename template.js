@@ -1,13 +1,13 @@
-import {DateTime} from "../third_party/luxon.min.js";
+import {DateTime} from "./third_party/luxon.min.js";
 
-export function populateTemplate(template, book) {
+export function populateTemplate(template, obj) {
     return template.replace(/\{\{\s*(\w+)(:[^}{\n]+)?\s*\}\}/g, function(match, property, format, offset, string) {
         if (format !== undefined) {
-            // Trim spaces and the ':' at the begining of format.
+            // Trim spaces and the ':' at the beginning of format.
             format = format.trim().slice(1);
         }
-        if (book.hasOwnProperty(property)) {
-            let value = book[property];
+        if (obj.hasOwnProperty(property)) {
+            let value = obj[property];
             if (value == null) {
                 value = "";
             }
