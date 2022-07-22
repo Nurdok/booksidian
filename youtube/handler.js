@@ -1,5 +1,6 @@
 import {populateTemplate} from "../template.js";
 import {DEFAULT_OPTIONS} from "./consts.js";
+import {getStorageValue} from "../utils.js";
 
 
 function getVideoFromYoutube() {
@@ -16,10 +17,10 @@ function getVideoFromYoutube() {
 
 
 async function getObsidianUri(video) {
-    const vault = DEFAULT_OPTIONS.vault_yt;
-    let file_location = DEFAULT_OPTIONS.file_location_yt;
-    const note_title = DEFAULT_OPTIONS.note_title_yt;
-    const note_content = DEFAULT_OPTIONS.note_content_yt;
+    const {vault, } = await getStorageValue({vault: DEFAULT_OPTIONS.vault_yt});
+    let {file_location, } = await getStorageValue({file_location: DEFAULT_OPTIONS.file_location_yt});
+    const {note_title, } = await getStorageValue({note_title: DEFAULT_OPTIONS.note_title_yt});
+    const {note_content, } = await getStorageValue({note_content: DEFAULT_OPTIONS.note_content_yt});
     let title = populateTemplate(note_title, video);
     let content = populateTemplate(note_content, video);
     if (!file_location.endsWith('/')) {
