@@ -16,10 +16,10 @@ function getVideoFromYoutube() {
 
 
 async function getObsidianUri(video) {
-    const vault = DEFAULT_OPTIONS.vault;
-    let file_location = DEFAULT_OPTIONS.file_location;
-    const note_title = DEFAULT_OPTIONS.note_title;
-    const note_content = DEFAULT_OPTIONS.note_content;
+    const vault = DEFAULT_OPTIONS.vault_yt;
+    let file_location = DEFAULT_OPTIONS.file_location_yt;
+    const note_title = DEFAULT_OPTIONS.note_title_yt;
+    const note_content = DEFAULT_OPTIONS.note_content_yt;
     let title = populateTemplate(note_title, video);
     let content = populateTemplate(note_content, video);
     if (!file_location.endsWith('/')) {
