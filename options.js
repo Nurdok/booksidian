@@ -62,9 +62,13 @@ function saveOptionsToStorage() {
     let file_location_yt = document.getElementById('file_location_yt').value;
     let note_title_yt = document.getElementById('note_title_yt').value;
     let note_content_yt = document.getElementById('note_content_yt').value;
-    chrome.storage.sync.set({
+
+    let keys_to_set = {
         vault, file_location, note_title, note_content, vault_yt, file_location_yt, note_title_yt, note_content_yt
-    }, function() {
+    };
+    console.log(keys_to_set);
+
+    chrome.storage.sync.set(keys_to_set, function() {
         // Update status to let user know options were saved.
         let status = document.getElementById('status');
         status.textContent = 'Options saved.';

@@ -1,4 +1,20 @@
 import {HANDLERS} from './consts.js';
+import {populateTemplate} from "./template.js";
+
+function getObsidianUri(obj, options) {
+    console.log(obj);
+    console.log(options);
+    let title = populateTemplate(options.note_title, obj);
+    let content = populateTemplate(options.note_content, obj);
+    let file_location = options.file_location
+    if (!file_location.endsWith('/')) {
+        file_location += '/';
+    }
+    let vault = options.vault;
+    let e = encodeURIComponent;  // For convenience.
+    let obsidian_uri = `obsidian://new?vault=${e(vault)}&file=${e(file_location)}${e(title)}&content=${e(content)}`;
+    return obsidian_uri;
+}
 
 function getHandler(url) {
     for (const site in HANDLERS) {
@@ -22,7 +38,8 @@ async function handleBrowserButtonClick(tab) {
 
 
     const siteActionResult = results[0].result;
-    const uri = await handler.handler.getObsidianUri(siteActionResult);
+    const uri = getObsidianUri(siteActionResult, await handler.handler.readOptionsFromStorage());
+    console.log(uri);
     chrome.tabs.create({url: uri});
 }
 

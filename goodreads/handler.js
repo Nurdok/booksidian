@@ -4,6 +4,7 @@ import {getStorageValue} from "../utils.js";
 
 
 function getBookFromGoodreads() {
+    console.log("called getBookFromGoodreads");
     let book = new Object();
     book.full_title = document.getElementById("bookTitle").innerText.trim();
     let split_title = book.full_title.split(":", 2);
@@ -44,22 +45,15 @@ function getBookFromGoodreads() {
     return book;
 }
 
-
-async function getObsidianUri(book) {
-    const {vault, } = await getStorageValue({vault: DEFAULT_OPTIONS.vault});
-    let {file_location, } = await getStorageValue({file_location: DEFAULT_OPTIONS.file_location});
-    const {note_title, } = await getStorageValue({note_title: DEFAULT_OPTIONS.note_title});
-    const {note_content, } = await getStorageValue({note_content: DEFAULT_OPTIONS.note_content});
-    let title = populateTemplate(note_title, book);
-    let content = populateTemplate(note_content, book);
-    if (!file_location.endsWith('/')) {
-        file_location += '/';
+async function readOptionsFromStorage() {
+    return {
+        vault: await getStorageValue({vault: DEFAULT_OPTIONS.vault})[0],
+        file_location:  await getStorageValue({file_location: DEFAULT_OPTIONS.file_location})[0],
+        note_title: await getStorageValue({note_title: DEFAULT_OPTIONS.note_title})[0],
+        note_content: await getStorageValue({note_content: DEFAULT_OPTIONS.note_content})[0],
     }
-    let e = encodeURIComponent;  // For convenience.
-    let obsidian_uri = `obsidian://new?vault=${e(vault)}&file=${e(file_location)}${e(title)}&content=${e(content)}`;
-    return obsidian_uri;
 }
 
-const GOODREADS_HANDLER = {siteAction: getBookFromGoodreads, getObsidianUri}
+const GOODREADS_HANDLER = {siteAction: getBookFromGoodreads, readOptionsFromStorage}
 
 export {GOODREADS_HANDLER}
