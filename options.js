@@ -58,6 +58,7 @@ function saveOptionsToStorage() {
     let file_location = document.getElementById('file_location').value;
     let note_title = document.getElementById('note_title').value;
     let note_content = document.getElementById('note_content').value;
+
     let vault_yt = document.getElementById('vault-yt').value;
     let file_location_yt = document.getElementById('file_location_yt').value;
     let note_title_yt = document.getElementById('note_title_yt').value;
@@ -66,6 +67,7 @@ function saveOptionsToStorage() {
     let keys_to_set = {
         vault, file_location, note_title, note_content, vault_yt, file_location_yt, note_title_yt, note_content_yt
     };
+    console.log('keys_to_set:');
     console.log(keys_to_set);
 
     chrome.storage.sync.set(keys_to_set, function() {
