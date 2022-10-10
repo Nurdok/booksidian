@@ -4,7 +4,6 @@ import {getStorageValue} from "../utils.js";
 
 
 function getVideoFromYoutube() {
-    console.log("called getVideoFromYoutube");
     let video = new Object();
     let metadata = document.getElementsByClassName('watch-active-metadata')[0];
     video.full_title = metadata.getElementsByClassName("title")[0].childNodes[0].innerText.trim();

@@ -67,8 +67,6 @@ function saveOptionsToStorage() {
     let keys_to_set = {
         vault, file_location, note_title, note_content, vault_yt, file_location_yt, note_title_yt, note_content_yt
     };
-    console.log('keys_to_set:');
-    console.log(keys_to_set);
 
     chrome.storage.sync.set(keys_to_set, function() {
         // Update status to let user know options were saved.
@@ -81,7 +79,6 @@ function saveOptionsToStorage() {
 }
 
 function setFormValues(items) {
-    console.log(items);
     document.getElementById('vault').value = items.vault;
     document.getElementById('file_location').value = items.file_location;
     document.getElementById('note_title').value = items.note_title;
