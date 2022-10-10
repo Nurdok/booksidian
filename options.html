@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -13,158 +13,280 @@
 
 <div class="container mb-3">
     <div class="row mt-3">
-        <h1><img src="booksidian.png"/> Booksidian Options</h1>
+        <h1><img src="booksidian.png" alt="booksidian logo"/> Booksidian Options</h1>
     </div>
-    <div class="row mt-3">
-        <h3>File Options</h3>
-    </div>
-    <div class="row">
-        <div class="form-floating col-6 mb-3 mt-3 ml-auto gx-1">
-            <input type="text" class="form-control" id="vault">
-            <label for="vault">Vault</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-floating col-6 mb-3 mt-3 ml-auto gx-1">
-            <input type="text" class="form-control" id="file_location">
-            <label for="file_location">New note location (leave empty for top-level note)</label>
-        </div>
-    </div>
-    <div class="row mt-3">
-        <h3>Template Options</h3>
-    </div>
-    <div class="row">
-        <div class="col-6">
-            <p>
-                You can use book information in the note title and content templates - parameter names
-                are surrounded with double curly braces - for example, <code>{{ short title }}</code>. The preview pane
-                will show you how your template will render with an example book.
-            </p>
-        </div>
-        <div class="col-6">
-            <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#param_table" aria-expanded="false" aria-controls="param_table">
-                Show available parameters
-            </button>
-        </div>
-
-        <div class="collapse mt-3" id="param_table">
-            <div class="card card-body">
-                <div class="row">
-                    <div class="col-12">
-                        <table class="table table-sm table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col">Parameter Name</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Example Output</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><code>full_title</code></td>
-                                <td>The full title of the book. Note that this may include colons, which aren't legal note name in Obsidian (use <code>short_title</code> instead)</td>
-                                <td class="booksidian_template">{{ full_title }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>short_title</code></td>
-                                <td>the title of the book up to the first colon</td>
-                                <td class="booksidian_template">{{ short_title }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>publication_year</code></td>
-                                <td>the publication year of the book's first edition</td>
-                                <td class="booksidian_template">{{ publication_year }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>formatted_authors</code></td>
-                                <td>a comma separated list of authors, surrounded with Obsidian link notation</td>
-                                <td class="booksidian_template">{{ formatted_authors }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>cover_image_url</code></td>
-                                <td>a URL for the main Goodreads cover image</td>
-                                <td class="booksidian_template">{{ cover_image_url }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>cover_image</code></td>
-                                <td>same as the above URL, but embedded as a Markdown image</td>
-                                <td class="booksidian_template">{{ cover_image }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>abstract</code></td>
-                                <td>the book's description from the page</td>
-                                <td class="booksidian_template">{{ abstract }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>series</code></td>
-                                <td>the book's series data</td>
-                                <td class="booksidian_template">{{ series }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>rating</code></td>
-                                <td>the book's rating on a 5 star scale</td>
-                                <td class="booksidian_template">{{ rating }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>rating_count</code></td>
-                                <td>the book's number of ratings</td>
-                                <td class="booksidian_template">{{ rating_count }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>total_pages</code></td>
-                                <td>the number of pages in the book</td>
-                                <td class="booksidian_template">{{ total_pages }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>isbn13</code></td>
-                                <td>the book's ISBN-13 ID (may not exist)</td>
-                                <td class="booksidian_template">{{ isbn13 }}</td>
-                            </tr>
-                            <tr>
-                                <td><code>date</code></td>
-                                <td>
-                                    Displays the current date and time according to the
-                                    <a href="https://moment.github.io/luxon/#/formatting?id=table-of-tokens">specified format</a>.
-                                    Defaults to <code>yyyy-MM-dd</code> if no format is specified. Specify a format
-                                    with a colon after the variable name.
-                                </td>
-                                <td>
-                                    <code>{{ date }}</code> → <span class="booksidian_template">{{ date }}</span><br/>
-                                    <code>{{ date:yyyy-MM }}</code> → <span class="booksidian_template">{{ date:yyyy-MM }}</span><br/>
-                                    <code>{{ date:DDDD }}</code> → <span class="booksidian_template">{{ date:DDDD}}</span><br/>
-                                    <code>{{ date:HH:mm }}</code> → <span class="booksidian_template">{{ date:HH:mm }}</span><br/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><code>time</code></td>
-                                <td>same as <code>date</code>, but defaults to <code>HH:mm</code></td>
-                                <td class="booksidian_template">{{ time }}</td>
-                            </tr>
-                            </tbody>
-                        </table>
+    <ul class="nav nav-tabs" id="template-options-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="tab-gr" data-bs-toggle="tab" data-bs-target="#options-gr" type="button" role="tab" aria-controls="options-gr" aria-selected="true">Books (Goodreads)</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="tab-yt" data-bs-toggle="tab" data-bs-target="#options-yt" type="button" role="tab" aria-controls="options-yt" aria-selected="false">Videos (YouTube)</button>
+        </li>
+    </ul>
+        <div class="tab-content" id="template-options-tab-content">
+            <div class="tab-pane fade show active" id="options-gr" role="tabpanel" aria-labelledby="options-gr">
+            <div class="row mt-3">
+                <h3>File Options</h3>
+            </div>
+            <div class="row">
+                <div class="form-floating col-6 mb-3 mt-3 ml-auto gx-1">
+                    <input type="text" class="form-control" id="vault">
+                    <label for="vault">Vault</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-6 mb-3 mt-3 ml-auto gx-1">
+                    <input type="text" class="form-control" id="file_location">
+                    <label for="file_location">New note location (leave empty for top-level note)</label>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <h3>Template Options</h3>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p>
+                        You can use book information in the note title and content templates - parameter names
+                        are surrounded with double curly braces - for example, <code>{{ short title }}</code>. The preview pane
+                        will show you how your template will render with an example book.
+                    </p>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#param_table" aria-expanded="false" aria-controls="param_table">
+                        Show available parameters
+                    </button>
+                </div>
+                <div class="collapse mt-3" id="param_table">
+                    <div class="card card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-sm table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Parameter Name</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Example Output</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><code>full_title</code></td>
+                                        <td>The full title of the book. Note that this may include colons, which aren't legal note name in Obsidian (use <code>short_title</code> instead)</td>
+                                        <td class="booksidian_template">{{ full_title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>short_title</code></td>
+                                        <td>the title of the book up to the first colon</td>
+                                        <td class="booksidian_template">{{ short_title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>publication_year</code></td>
+                                        <td>the publication year of the book's first edition</td>
+                                        <td class="booksidian_template">{{ publication_year }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>formatted_authors</code></td>
+                                        <td>a comma separated list of authors, surrounded with Obsidian link notation</td>
+                                        <td class="booksidian_template">{{ formatted_authors }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>cover_image_url</code></td>
+                                        <td>a URL for the main Goodreads cover image</td>
+                                        <td class="booksidian_template">{{ cover_image_url }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>cover_image</code></td>
+                                        <td>same as the above URL, but embedded as a Markdown image</td>
+                                        <td class="booksidian_template">{{ cover_image }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>abstract</code></td>
+                                        <td>the book's description from the page</td>
+                                        <td class="booksidian_template">{{ abstract }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>series</code></td>
+                                        <td>the book's series data</td>
+                                        <td class="booksidian_template">{{ series }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>rating</code></td>
+                                        <td>the book's rating on a 5 star scale</td>
+                                        <td class="booksidian_template">{{ rating }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>rating_count</code></td>
+                                        <td>the book's number of ratings</td>
+                                        <td class="booksidian_template">{{ rating_count }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>total_pages</code></td>
+                                        <td>the number of pages in the book</td>
+                                        <td class="booksidian_template">{{ total_pages }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>isbn13</code></td>
+                                        <td>the book's ISBN-13 ID (may not exist)</td>
+                                        <td class="booksidian_template">{{ isbn13 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>date</code></td>
+                                        <td>
+                                            Displays the current date and time according to the
+                                            <a href="https://moment.github.io/luxon/#/formatting?id=table-of-tokens">specified format</a>.
+                                            Defaults to <code>yyyy-MM-dd</code> if no format is specified. Specify a format
+                                            with a colon after the variable name.
+                                        </td>
+                                        <td>
+                                            <code>{{ date }}</code> → <span class="booksidian_template">{{ date }}</span><br/>
+                                            <code>{{ date:yyyy-MM }}</code> → <span class="booksidian_template">{{ date:yyyy-MM }}</span><br/>
+                                            <code>{{ date:DDDD }}</code> → <span class="booksidian_template">{{ date:DDDD}}</span><br/>
+                                            <code>{{ date:HH:mm }}</code> → <span class="booksidian_template">{{ date:HH:mm }}</span><br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>time</code></td>
+                                        <td>same as <code>date</code>, but defaults to <code>HH:mm</code></td>
+                                        <td class="booksidian_template">{{ time }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
+                    <input type="text" class="form-control" id="note_title">
+                    <label for="note_title" class="form-label">Note title template (you can use book parameters here!)</label>
+                </div>
+                <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
+                    <input type="text" class="form-control" id="note_title_preview" placeholder="preview" disabled>
+                    <label for="note_title_preview" class="form-label">Note title preview</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
+                    <textarea class="form-control" id="note_content" style="height: 300px"></textarea>
+                    <label for="note_content" class="form-label">Note content template (you can use book parameters here!)</label>
+                </div>
+                <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
+                    <textarea class="form-control" id="note_content_preview" style="height: 300px" placeholder="preview" disabled></textarea>
+                    <label for="note_content_preview" class="form-label">Note content preview</label>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
-            <input type="text" class="form-control" id="note_title">
-            <label for="note_title" class="form-label">Note title template (you can use book parameters here!)</label>
-        </div>
-        <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
-            <input type="text" class="form-control" id="note_title_preview" placeholder="preview" disabled>
-            <label for="note_title_preview" class="form-label">Note title preview</label>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
-            <textarea class="form-control" id="note_content" style="height: 300px"></textarea>
-            <label for="note_content" class="form-label">Note content template (you can use book parameters here!)</label>
-        </div>
-        <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
-            <textarea class="form-control" id="note_content_preview" style="height: 300px" placeholder="preview" disabled></textarea>
-            <label for="note_content_preview" class="form-label">Note content preview</label>
+
+        <!-- YOUTUBE !-->
+        <div class="tab-pane fade" id="options-yt" role="tabpanel" aria-labelledby="options-yt">
+            <div class="row mt-3">
+                <h3>File Options</h3>
+            </div>
+            <div class="row">
+                <div class="form-floating col-6 mb-3 mt-3 ml-auto gx-1">
+                    <input type="text" class="form-control" id="vault-yt">
+                    <label for="vault-yt">Vault</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-floating col-6 mb-3 mt-3 ml-auto gx-1">
+                    <input type="text" class="form-control" id="file_location_yt">
+                    <label for="file_location_yt">New note location (leave empty for top-level note)</label>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <h3>Template Options</h3>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p>
+                        You can use book information in the note title and content templates - parameter names
+                        are surrounded with double curly braces - for example, <code>{{ short title }}</code>. The preview pane
+                        will show you how your template will render with an example video.
+                    </p>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#param_table_yt" aria-expanded="false" aria-controls="param_table_yt">
+                        Show available parameters
+                    </button>
+                </div>
+
+                <div class="collapse mt-3" id="param_table_yt">
+                    <div class="card card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <table class="table table-sm table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col">Parameter Name</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Example Output</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><code>full_title</code></td>
+                                        <td>The full title of the video. Note that this may include characters which aren't legal note names in Obsidian (use <code>short_title</code> instead)</td>
+                                        <td class="booksidian_template_yt">{{ full_title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>short_title</code></td>
+                                        <td>the title of the video up to the first illegal character</td>
+                                        <td class="booksidian_template_yt">{{ short_title }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>channel</code></td>
+                                        <td>the YouTube channel name</td>
+                                        <td class="booksidian_template_yt">{{ channel }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>date</code></td>
+                                        <td>
+                                            Displays the current date and time according to the
+                                            <a href="https://moment.github.io/luxon/#/formatting?id=table-of-tokens">specified format</a>.
+                                            Defaults to <code>yyyy-MM-dd</code> if no format is specified. Specify a format
+                                            with a colon after the variable name.
+                                        </td>
+                                        <td>
+                                            <code>{{ date }}</code> → <span class="booksidian_template_yt">{{ date }}</span><br/>
+                                            <code>{{ date:yyyy-MM }}</code> → <span class="booksidian_template_yt">{{ date:yyyy-MM }}</span><br/>
+                                            <code>{{ date:DDDD }}</code> → <span class="booksidian_template_yt">{{ date:DDDD}}</span><br/>
+                                            <code>{{ date:HH:mm }}</code> → <span class="booksidian_template_yt">{{ date:HH:mm }}</span><br/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>time</code></td>
+                                        <td>same as <code>date</code>, but defaults to <code>HH:mm</code></td>
+                                        <td class="booksidian_template_yt">{{ time }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
+                    <input type="text" class="form-control" id="note_title_yt">
+                    <label for="note_title_yt" class="form-label">Note title template (you can use video parameters here!)</label>
+                </div>
+                <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
+                    <input type="text" class="form-control" id="note_title_preview_yt" placeholder="preview" disabled>
+                    <label for="note_title_preview_yt" class="form-label">Note title preview</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
+                    <textarea class="form-control" id="note_content_yt" style="height: 300px"></textarea>
+                    <label for="note_content_yt" class="form-label">Note content template (you can use video parameters here!)</label>
+                </div>
+                <div class="col-6 mb-3 form-floating mt-3 ml-auto gx-1">
+                    <textarea class="form-control" id="note_content_preview_yt" style="height: 300px" placeholder="preview" disabled></textarea>
+                    <label for="note_content_preview_yt" class="form-label">Note content preview</label>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row mb-3">
@@ -195,7 +317,7 @@
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="third_party/jquery-3.6.0.min.js"></script>
 <script src="third_party/popper.min.js"></script>
-<script src="third_party/bootstrap.min.js"></script>
+<script src="third_party/bootstrap.bundle.min.js"></script>
 
 <script type="module" src="options.js"></script>
 
