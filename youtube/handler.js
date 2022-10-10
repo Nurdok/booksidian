@@ -16,24 +16,6 @@ function getVideoFromYoutube() {
     return video;
 }
 
-
-/*
-async function readOptionsFromStorage() {
-    let vault_yt = await getStorageValue('vault_yt');
-    console.log(vault_yt);
-    const {vault, } = await getStorageValue({vault_yt: DEFAULT_OPTIONS.vault_yt});
-    const {file_location, } = await getStorageValue({file_location: DEFAULT_OPTIONS.file_location_yt});
-    const {note_title, } = await getStorageValue({note_title_yt: DEFAULT_OPTIONS.note_title_yt});
-    const {note_content, } = await getStorageValue({note_content_yt: DEFAULT_OPTIONS.note_content_yt});
-
-    let o = {
-        vault, file_location, note_title, note_content
-    }
-    console.log(o);
-    return o;
-}
-*/
-
 async function readOptionsFromStorage() {
     return {
         vault: (await getStorageValue({vault_yt: DEFAULT_OPTIONS.vault_yt})).vault_yt,
@@ -42,7 +24,6 @@ async function readOptionsFromStorage() {
         note_content: (await getStorageValue({note_content_yt: DEFAULT_OPTIONS.note_content_yt})).note_content_yt,
     }
 }
-
 
 const YOUTUBE_HANDLER = {siteAction: getVideoFromYoutube, readOptionsFromStorage}
 
