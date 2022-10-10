@@ -1,5 +1,6 @@
 import {populateTemplate} from "../template.js";
 import {DEFAULT_OPTIONS} from "./consts.js";
+import {getStorageValue} from "../utils.js";
 
 
 function getVideoFromYoutube() {
@@ -14,22 +15,15 @@ function getVideoFromYoutube() {
     return video;
 }
 
-
-async function getObsidianUri(video) {
-    const vault = DEFAULT_OPTIONS.vault;
-    let file_location = DEFAULT_OPTIONS.file_location;
-    const note_title = DEFAULT_OPTIONS.note_title;
-    const note_content = DEFAULT_OPTIONS.note_content;
-    let title = populateTemplate(note_title, video);
-    let content = populateTemplate(note_content, video);
-    if (!file_location.endsWith('/')) {
-        file_location += '/';
+async function readOptionsFromStorage() {
+    return {
+        vault: (await getStorageValue({vault_yt: DEFAULT_OPTIONS.vault_yt})).vault_yt,
+        file_location:  (await getStorageValue({file_location_yt: DEFAULT_OPTIONS.file_location_yt})).file_location_yt,
+        note_title: (await getStorageValue({note_title_yt: DEFAULT_OPTIONS.note_title_yt})).note_title_yt,
+        note_content: (await getStorageValue({note_content_yt: DEFAULT_OPTIONS.note_content_yt})).note_content_yt,
     }
-    let e = encodeURIComponent;  // For convenience.
-    let obsidian_uri = `obsidian://new?vault=${e(vault)}&file=${e(file_location)}${e(title)}&content=${e(content)}`;
-    return obsidian_uri;
 }
 
-const YOUTUBE_HANDLER = {siteAction: getVideoFromYoutube, getObsidianUri}
+const YOUTUBE_HANDLER = {siteAction: getVideoFromYoutube, readOptionsFromStorage}
 
 export {YOUTUBE_HANDLER}
