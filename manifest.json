@@ -1,7 +1,7 @@
 {
   "name": "Booksidian",
-  "description": "Create an Obsidian note for a book, from the book's Goodreads page",
-  "version": "0.3",
+  "description": "Create Obsidian notes for books (from the book's Goodreads page) or for YouTube videos",
+  "version": "0.4",
   "manifest_version": 3,
   "background": {
     "service_worker": "background.js",
