@@ -16,6 +16,6 @@ async function readOptionsFromStorage() {
     }
 }
 
-const GOODREADS_HANDLER = {siteAction: getBookFromGoodreads, readOptionsFromStorage}
+const IMDB_HANDLER = {siteAction: getMovieFromImdb, readOptionsFromStorage}
 
-export {GOODREADS_HANDLER}
+export {IMDB_HANDLER}
