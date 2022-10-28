@@ -8,7 +8,8 @@ function getMovieFromImdb() {
     movie.title  = document.getElementsByClassName('sc-b73cd867-0')[0].innerText.trim();
     metadata = document.getElementsByClassName('sc-bfec09a1-8');
     movie.director = metadata[0].childNodes[0].childNodes[1].innerText.trim();
-
+    // TODO: instead of taking innerText, loop over children and create a list of strings from each writer.
+    movie.writers = metadata[0].childNodes[1].childNodes[1].innerText.trim();
     return movie;
 }
 
