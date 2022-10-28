@@ -4,8 +4,17 @@ import {getStorageValue} from "../utils.js";
 
 
 function getBookFromGoodreads() {
+    function getItemUrl() {
+        let canonical = document.querySelector("link[rel='canonical']").getAttribute("href");
+        if (canonical) {
+            return canonical;
+        }
+        return window.location.href;
+    }
+
     function getBookFromGoodreadsNewUi() {
         let book = new Object();
+        book.item_url = getItemUrl();
         book.full_title = document.getElementsByClassName("Text__title1")[0].innerText.trim();
         let split_title = book.full_title.split(":", 2);
         book.short_title = split_title[0];
@@ -62,6 +71,7 @@ function getBookFromGoodreads() {
 
     function getBookFromGoodreadsLegacyUi() {
         let book = new Object();
+        book.item_url = getItemUrl();
         book.full_title = document.getElementById("bookTitle").innerText.trim();
         let split_title = book.full_title.split(":", 2);
         book.short_title = split_title[0];
