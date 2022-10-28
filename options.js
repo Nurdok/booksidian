@@ -17,6 +17,7 @@ function getFakeBook() {
     book.rating_count = 620758;
     book.total_pages = "491 pages";
     book.isbn13 = "9780060853983";
+    book.item_url = "https://www.goodreads.com/book/show/12067.Good_Omens";
     return book;
 }
 
