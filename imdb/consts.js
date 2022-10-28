@@ -16,7 +16,7 @@ export const DEFAULT_OPTIONS = {
         | | |
         | - | - |
         | **Director** | {{ director }} |
-        | **Writer** | {{ writer }} |
+        | **Writers** | {{ writers }} |
         | **Actors** | {{ actors }} |
         | | |
     `),
