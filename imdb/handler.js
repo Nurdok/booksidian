@@ -6,6 +6,9 @@ import {getStorageValue} from "../utils.js";
 function getMovieFromImdb() {
     let movie = new Object();
     movie.title  = document.getElementsByClassName('sc-b73cd867-0')[0].innerText.trim();
+    metadata = document.getElementsByClassName('sc-bfec09a1-8');
+    movie.director = metadata[0].childNodes[0].childNodes[1].innerText.trim();
+
     return movie;
 }
 
