@@ -21,3 +21,6 @@ export const DEFAULT_OPTIONS = {
         | | |
     `),
 }
+
+// TODO: add this and make it work as part of the getMovieFromImdb function inside the bg script.
+// export const TITLE_CLASS = 'sc-b73cd867-0';
