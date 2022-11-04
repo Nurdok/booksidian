@@ -21,4 +21,4 @@ function formatList(list) {
 }
 
 
-export {getStorageValue, formatList};
+export {getStorageValue};
