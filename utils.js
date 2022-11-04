@@ -11,6 +11,7 @@ async function getStorageValue(key) {
     });
 };
 
+// TODO: use this to create formatted authors/writers/actors.
 function formatList(list) {
     return list.map(
         function (element) {
@@ -20,4 +21,4 @@ function formatList(list) {
 }
 
 
-export {getStorageValue};
+export {getStorageValue, formatList};

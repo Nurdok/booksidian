@@ -1,4 +1,3 @@
-import {populateTemplate} from "../template.js";
 import {DEFAULT_OPTIONS} from "./consts.js";
 import {getStorageValue} from "../utils.js";
 
@@ -13,7 +12,6 @@ function getMovieFromImdb() {
         function (element) {
             movie.writers.push(element.innerText.trim());
         });
-    //TODO: make this a common util as this is used both for movie writers and book authors.
     movie.formatted_writers = movie.writers.map(function(writer) {
         return `[[${writer}]]`;
     }).join(", ");
