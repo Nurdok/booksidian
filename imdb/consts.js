@@ -16,11 +16,17 @@ export const DEFAULT_OPTIONS = {
         | | |
         | - | - |
         | **Director** | {{ director }} |
-        | **Writers** | {{ writers }} |
+        | **Writers** | {{ formatted_writers }} |
         | **Actors** | {{ actors }} |
         | | |
+
+        ## Plot
+
+        {{ plot_summary }}
     `),
 }
 
 // TODO: add this and make it work as part of the getMovieFromImdb function inside the bg script.
 // export const TITLE_CLASS = 'sc-b73cd867-0';
+// export const STORYLINE_CLASS = 'sc-132205f7-0';
+// export const METADATA_CLASS = 'sc-bfec09a1-8';
