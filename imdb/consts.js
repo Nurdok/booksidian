@@ -17,7 +17,7 @@ export const DEFAULT_OPTIONS = {
         | - | - |
         | **Director** | {{ director }} |
         | **Writers** | {{ formatted_writers }} |
-        | **Actors** | {{ actors }} |
+        | **Actors** | {{ formatted_actors }} |
         | | |
 
         ## Plot
@@ -30,3 +30,4 @@ export const DEFAULT_OPTIONS = {
 // export const TITLE_CLASS = 'sc-b73cd867-0';
 // export const STORYLINE_CLASS = 'sc-132205f7-0';
 // export const METADATA_CLASS = 'sc-bfec09a1-8';
+// export const CAST_CLASS = 'sc-bfec09a1-0';

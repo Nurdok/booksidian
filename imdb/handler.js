@@ -1,4 +1,3 @@
-import {populateTemplate} from "../template.js";
 import {DEFAULT_OPTIONS} from "./consts.js";
 import {getStorageValue} from "../utils.js";
 
@@ -6,19 +5,28 @@ import {getStorageValue} from "../utils.js";
 function getMovieFromImdb() {
     let movie = new Object();
     movie.title  = document.getElementsByClassName('sc-b73cd867-0')[0].innerText.trim();
-    metadata = document.getElementsByClassName('sc-bfec09a1-8');
+    let metadata = document.getElementsByClassName('sc-bfec09a1-8');
     movie.director = metadata[0].childNodes[0].childNodes[1].innerText.trim();
     movie.writers = [];
     metadata[0].childNodes[1].childNodes[1].childNodes[0].childNodes.forEach(
         function (element) {
             movie.writers.push(element.innerText.trim());
         });
-    //TODO: make this a common util as this is used both for movie writers and bood authors.
     movie.formatted_writers = movie.writers.map(function(writer) {
         return `[[${writer}]]`;
     }).join(", ");
     movie.plot_summary = document.getElementsByClassName('sc-132205f7-0')[0]
-        .childNodes[0].innerText.trim(); 
+        .childNodes[0].innerText.trim();
+    let cast_elements = document.getElementsByClassName('sc-bfec09a1-0')[0]
+        .childNodes[1].childNodes[1].childNodes;
+    movie.actors = [];
+    cast_elements.forEach(
+        function (element) {
+            movie.actors.push(element.childNodes[1].childNodes[0].innerText.trim())
+        })
+    movie.formatted_actors = movie.actors.map(function(actor) {
+        return `[[${actor}]]`;
+    }).join(", ");
     return movie;
 }
 
