@@ -11,5 +11,13 @@ async function getStorageValue(key) {
     });
 };
 
+function formatList(list) {
+    return list.map(
+        function (element) {
+            return `[[${element}]]`;
+        }
+    ).join(", ");
+}
+
 
 export {getStorageValue};
